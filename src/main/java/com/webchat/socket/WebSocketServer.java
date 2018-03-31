@@ -17,6 +17,12 @@ public class WebSocketServer {
         this.session = session;
         sessionSet.add(this);
         System.out.println("new session adding!");
+        try{
+            sendMessage("hello");
+        } catch (Exception e){
+
+        }
+
     }
 
     @OnError

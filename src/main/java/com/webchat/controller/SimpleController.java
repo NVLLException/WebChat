@@ -1,11 +1,12 @@
 package com.webchat.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping("/index")//request path
+@RequestMapping("/webChat")//request path
 public class SimpleController {
     @RequestMapping("/index1")//requestpath
     public ModelAndView index(){
@@ -17,6 +18,11 @@ public class SimpleController {
     public ModelAndView index2(){
         ModelAndView modelAndView = new ModelAndView("/index");//forward jsp file
         modelAndView.addObject("name","B");
+        return modelAndView;
+    }
+    @RequestMapping("/socket")
+    public ModelAndView socket(){
+        ModelAndView modelAndView = new ModelAndView("/chat/simpleChat");
         return modelAndView;
     }
 }
