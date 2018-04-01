@@ -20,9 +20,4 @@ public class SimpleController {
         modelAndView.addObject("name","B");
         return modelAndView;
     }
-    @RequestMapping("/socket")
-    public ModelAndView socket(){
-        ModelAndView modelAndView = new ModelAndView("/chat/simpleChat");
-        return modelAndView;
-    }
 }
