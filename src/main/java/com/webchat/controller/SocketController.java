@@ -1,16 +1,20 @@
 package com.webchat.controller;
 
-import org.springframework.messaging.handler.annotation.MessageMapping;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@ResponseBody
-@RequestMapping(value="/websocket",method= RequestMethod.POST,consumes = "application/json")
+@RequestMapping("/webChat")
 public class SocketController {
-    public String pushMessage(){
-        return "fuck";
+    @RequestMapping("/doChat")
+    public ModelAndView socket(HttpServletRequest request,HttpServletResponse response){
+        HttpSession session = request.getSession();
+        ModelAndView modelAndView = new ModelAndView("/chat/chat");
+        return modelAndView;
     }
 }
