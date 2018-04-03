@@ -1,7 +1,6 @@
 package com.webchat.socket;
 
 import com.webchat.utils.SocketUtils;
-import groovy.util.logging.Slf4j;
 import org.springframework.stereotype.Component;
 
 import javax.websocket.*;
@@ -10,7 +9,6 @@ import java.io.IOException;
 
 @ServerEndpoint(value = "/websocket")
 @Component
-@Slf4j
 public class WebSocketServer {
     private Session session;
 
