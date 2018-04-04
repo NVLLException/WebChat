@@ -1,6 +1,7 @@
 package com.webchat.controller;
 
 import com.webchat.mapper.UserMapper;
+import com.webchat.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
@@ -13,9 +14,9 @@ import javax.servlet.http.HttpServletResponse;
 @Controller
 @RequestMapping("/webChat")
 public class UserController {
-    //@Autowired
-    private UserMapper userMapper;
 
+    @Autowired
+    private UserService userService;
     @RequestMapping("/login")
     public ModelAndView login(HttpServletRequest request, HttpServletResponse response){
         ModelAndView modelAndView = new ModelAndView("/user/login");

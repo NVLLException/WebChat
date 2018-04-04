@@ -4,14 +4,19 @@ package com.webchat.mapper;
 import com.webchat.entity.User;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Result;
+import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
+import org.springframework.stereotype.Component;
 
 
 @Mapper
 public interface UserMapper {
     @Insert("insert into user(loginName,nickName,password,createTime,lastModifyTime)values(#{loginName},#{nickName},#{password},now(),now())")
+    @Options(useGeneratedKeys = true, keyProperty = "user.id")
     public void createUser(User user);
 
     @Select("select loginName,nickName from user where id=#{id}")
