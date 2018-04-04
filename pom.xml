@@ -14,11 +14,10 @@
         <version>1.5.1.RELEASE</version>
     </parent>
     <dependencies>
-        <!--不需要再引入websocket,在spring-boot-starter-web已引入-->
-<!--        <dependency>
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-websocket</artifactId>
-        </dependency>-->
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>

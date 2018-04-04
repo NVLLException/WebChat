@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 @Controller
 @RequestMapping("/webChat")
 public class UserController {
-    @Autowired
+    //@Autowired
     private UserMapper userMapper;
 
     @RequestMapping("/login")

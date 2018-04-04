@@ -3,10 +3,13 @@ package com.webchat.mapper;
 
 import com.webchat.entity.User;
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
+
+@Mapper
 public interface UserMapper {
     @Insert("insert into user(loginName,nickName,password,createTime,lastModifyTime)values(#{loginName},#{nickName},#{password},now(),now())")
     public void createUser(User user);
