@@ -1,6 +1,7 @@
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <jsp:include page="../common/common.jsp"></jsp:include>
 <div style="height: 100%">
-  <div class="middleDiv" style="display: none">
+  <div class="middleDiv">
     <fieldset>
       <div class="am-form-group">
         <label for="doc-ipt-email-1">邮件</label>
@@ -17,6 +18,6 @@
     max-height: 60%;
     margin: auto;
     margin-top: 10%;
-    box-shadow:0 0 5px 10px grey;
+    box-shadow:0 0 2px 2px grey;
   }
 </style>
