@@ -15,4 +15,11 @@ public class UserService {
         userMapper.createUser(user);
         return userMapper.retrieveUser(user.getId());
     }
+
+    public Boolean validateLoginInfo(String loginName, String password){
+        User user = userMapper.retrieveUser(loginName, password);
+        if(user != null)
+            return true;
+        return false;
+    }
 }

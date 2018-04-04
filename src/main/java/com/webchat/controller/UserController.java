@@ -22,4 +22,17 @@ public class UserController {
         ModelAndView modelAndView = new ModelAndView("/user/login");
         return modelAndView;
     }
+
+    @RequestMapping("/validateLoginInfo")
+    public void validateLoginInfo(HttpServletRequest request, HttpServletResponse response){
+        String loginName = request.getParameter("loginName");
+        String password = request.getParameter("password");
+        Boolean isValid = userService.validateLoginInfo(loginName, password);
+    }
+
+    @RequestMapping("doLogin")
+    public void doLogin(HttpServletRequest request, HttpServletResponse response){
+        ModelAndView modelAndView = new ModelAndView("/user/login");
+
+    }
 }
