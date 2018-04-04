@@ -1,6 +1,6 @@
 <jsp:include page="../common/common.jsp"></jsp:include>
 <div style="height: 100%">
-  <div class="middleDiv">
+  <div class="middleDiv" style="display: none">
     <fieldset>
       <div class="am-form-group">
         <label for="doc-ipt-email-1">邮件</label>

@@ -1,6 +1,6 @@
 package com.webchat.socket;
 
-import com.webchat.utils.SocketUtils;
+import com.webchat.utils.SocketUtil;
 import org.springframework.stereotype.Component;
 
 import javax.websocket.*;
@@ -23,7 +23,7 @@ public class WebSocketServer {
     @OnOpen
     public void onOpen(Session session){
         this.setSession(session);
-        SocketUtils.setSocket(this);
+        SocketUtil.setSocket(this);
         System.out.println("new session adding!");
         try{
             sendMessage("hello");
@@ -40,7 +40,7 @@ public class WebSocketServer {
 
     @OnClose
     public void onClose(){
-        SocketUtils.removeSocket(this);
+        SocketUtil.removeSocket(this);
         System.out.println("session move out!");
     }
 

@@ -6,7 +6,7 @@ import java.util.*;
 
 import com.webchat.socket.WebSocketServer;
 
-public class SocketUtils {
+public class SocketUtil {
     private volatile static Map<String,WebSocketServer> sessionMap;
     static{
         sessionMap = new HashMap();
