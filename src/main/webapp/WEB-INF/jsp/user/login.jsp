@@ -1,15 +1,32 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<jsp:include page="../common/common.jsp"></jsp:include>
 <div style="height: 100%">
   <div class="middleDiv">
     <fieldset>
       <div class="am-form-group">
-        <label for="doc-ipt-email-1">邮件</label>
-        <input type="email" class="" id="doc-ipt-email-1" placeholder="输入电子邮件">
+        <label for="loginName">账号</label>
+        <input type="text" class="" id="loginName" placeholder="输入登录账号">
+      </div>
+      <div class="am-form-group">
+        <label for="password">密码</label>
+        <input type="password" class="" id="password" placeholder="输入密码">
       </div>
     </fieldset>
   </div>
 </div>
+<jsp:include page="../common/common.jsp"></jsp:include>
+<script type="text/javascript">
+  $('#loginName').change(function(){
+    $.ajax({
+      url: '',
+      data: {loginName: this.value},
+      dataType: 'json',
+      type: 'post'
+    }).done(function(result){
+      if(result.statusCode == "error"){
+      }
+    });
+  });
+</script>
 <style>
   .middleDiv{
     max-width: 25%;

@@ -1,7 +1,11 @@
 package com.webchat.controller;
 
+import com.webchat.entity.User;
 import com.webchat.mapper.UserMapper;
 import com.webchat.service.UserService;
+import com.webchat.utils.HttpUtil;
+import com.webchat.utils.WcConstant;
+import com.webchat.utils.WcResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
@@ -23,14 +27,34 @@ public class UserController {
         return modelAndView;
     }
 
+    @RequestMapping("/validateLoginName")
+    public void validateLoginName(HttpServletRequest request, HttpServletResponse response){
+        String loginName = request.getParameter("loginName");
+        WcResponse wcResponse = new WcResponse();
+        Boolean isValid = userService.validateLoginName(loginName);
+        wcResponse.succ();
+        if(!isValid){
+            wcResponse.addError("Login name has bean used.");
+        }
+        HttpUtil.ajaxSendResponse(response, wcResponse);
+    }
+
     @RequestMapping("/validateLoginInfo")
     public void validateLoginInfo(HttpServletRequest request, HttpServletResponse response){
         String loginName = request.getParameter("loginName");
         String password = request.getParameter("password");
-        Boolean isValid = userService.validateLoginInfo(loginName, password);
+        WcResponse wcResponse = new WcResponse();
+        User user = userService.retrieveUser(loginName, password);
+        wcResponse.succ();
+        if(user == null){
+            wcResponse.addError("Login name or password is not correct.");
+        } else {
+            request.getSession().setAttribute(WcConstant.USER, user);
+        }
+        HttpUtil.ajaxSendResponse(response, wcResponse);
     }
 
-    @RequestMapping("doLogin")
+    @RequestMapping("/doLogin")
     public void doLogin(HttpServletRequest request, HttpServletResponse response){
         ModelAndView modelAndView = new ModelAndView("/user/login");
 

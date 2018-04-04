@@ -22,4 +22,16 @@ public class UserService {
             return true;
         return false;
     }
+
+    public User retrieveUser(String loginName, String password){
+        return userMapper.retrieveUser(loginName, password);
+    }
+
+    public Boolean validateLoginName(String loginName){
+        User user = userMapper.retrieveUser(loginName);
+        if(user != null){
+            return true;
+        }
+        return false;
+    }
 }

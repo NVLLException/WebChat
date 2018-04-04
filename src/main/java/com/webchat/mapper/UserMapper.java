@@ -22,6 +22,9 @@ public interface UserMapper {
     @Select("select loginName,nickName from user where id=#{id}")
     public User retrieveUser(@Param("id") Integer id);
 
+    @Select("select * from user where loginName=#{loginName}")
+    public User retrieveUser(@Param("loginName") String loginName);
+
     @Select("select * from user where loginName=#{loginName} and password=#{password}")
     public User retrieveUser(@Param("loginName") String loginName, @Param("password") String password);
 
