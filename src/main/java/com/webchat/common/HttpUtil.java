@@ -1,4 +1,4 @@
-package com.webchat.utils;
+package com.webchat.common;
 
 import com.alibaba.fastjson.JSONObject;
 

@@ -1,7 +1,7 @@
 package com.webchat.scheduler;
 
 import com.webchat.socket.WebSocketServer;
-import com.webchat.utils.SocketUtil;
+import com.webchat.common.SocketUtil;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 

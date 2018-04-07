@@ -1,4 +1,4 @@
-package com.webchat.utils;
+package com.webchat.common;
 
 import java.util.ArrayList;
 import java.util.List;

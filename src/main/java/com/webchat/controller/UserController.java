@@ -1,14 +1,12 @@
 package com.webchat.controller;
 
 import com.webchat.entity.User;
-import com.webchat.mapper.UserMapper;
 import com.webchat.service.UserService;
-import com.webchat.utils.HttpUtil;
-import com.webchat.utils.WcConstant;
-import com.webchat.utils.WcResponse;
+import com.webchat.common.HttpUtil;
+import com.webchat.common.WcConstant;
+import com.webchat.common.WcResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 

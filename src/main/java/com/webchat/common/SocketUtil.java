@@ -1,4 +1,4 @@
-package com.webchat.utils;
+package com.webchat.common;
 
 
 import javax.websocket.Session;

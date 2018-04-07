@@ -1,6 +1,6 @@
 package com.webchat.socket;
 
-import com.webchat.utils.SocketUtil;
+import com.webchat.common.SocketUtil;
 import org.springframework.stereotype.Component;
 
 import javax.websocket.*;
