@@ -1,6 +1,7 @@
 ##########Webchat###start############
 drop database if exists webchat;
 create database webchat;
+use webchat;
 drop table if exists `user`;
 create table `user`(
 	`id` int(11) auto_increment not null,

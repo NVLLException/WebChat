@@ -14,22 +14,22 @@ public class UserService {
     @Transactional
     public User createUser(User user){
         userMapper.createUser(user);
-        return userMapper.retrieveUser(user.getId());
+        return userMapper.retrieveUserById(user.getId());
     }
 
     public Boolean validateLoginInfo(String loginName, String password){
-        User user = userMapper.retrieveUser(loginName, password);
+        User user = userMapper.retrieveUserByNameAndPwd(loginName, password);
         if(user != null)
             return true;
         return false;
     }
 
     public User retrieveUser(String loginName, String password){
-        return userMapper.retrieveUser(loginName, password);
+        return userMapper.retrieveUserByNameAndPwd(loginName, password);
     }
 
     public Boolean validateLoginName(String loginName){
-        User user = userMapper.retrieveUser(loginName);
+        User user = userMapper.retrieveUserByLoginName(loginName);
         if(user != null){
             return true;
         }

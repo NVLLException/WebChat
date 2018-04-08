@@ -1,4 +1,14 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<style>
+  .middleDiv{
+    max-width: 25%;
+    min-width:25%;
+    max-height: 60%;
+    margin: auto;
+    margin-top: 10%;
+    box-shadow:0 0 2px 2px grey;
+  }
+</style>
 <div style="height: 100%">
   <div class="middleDiv">
     <fieldset>
@@ -21,7 +31,7 @@
   $(document).ready(function(){
     $('#loginName').change(function(){
       $.ajax({
-        url: '/validateLoginName',
+        url: '/webChat/validateLoginName',
         data: {loginName: this.value},
         dataType: 'json',
         type: 'post'
@@ -35,7 +45,7 @@
       var $loginName = $('#loginName').val();
       var $password = $('#password').val();
       $.ajax({
-        url: '/validateLoginInfo',
+        url: '/webChat/validateLoginInfo',
         data: {loginName: $loginName, password: $password},
         dataType: 'json',
         type: 'post'
@@ -47,14 +57,3 @@
     });
   });
 </script>
-<style>
-  .middleDiv{
-    max-width: 25%;
-    min-width:25%;
-    min-height: 60%;
-    max-height: 60%;
-    margin: auto;
-    margin-top: 10%;
-    box-shadow:0 0 2px 2px grey;
-  }
-</style>

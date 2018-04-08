@@ -31,7 +31,7 @@ public class UserController {
         WcResponse wcResponse = new WcResponse();
         Boolean isValid = userService.validateLoginName(loginName);
         wcResponse.succ();
-        if(!isValid){
+        if(isValid){
             wcResponse.addError("Login name has bean used.");
         }
         HttpUtil.ajaxSendResponse(response, wcResponse);
