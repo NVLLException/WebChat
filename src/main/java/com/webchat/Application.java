@@ -10,7 +10,8 @@ import org.springframework.boot.web.support.SpringBootServletInitializer;
 /**
  * 临时去掉数据源注入
  */
-@SpringBootApplication(exclude={DataSourceAutoConfiguration.class})
+@SpringBootApplication
+//@SpringBootApplication(exclude={DataSourceAutoConfiguration.class})
 public class Application extends SpringBootServletInitializer {
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {

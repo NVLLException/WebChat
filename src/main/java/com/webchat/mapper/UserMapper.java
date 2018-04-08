@@ -6,11 +6,8 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
-import org.springframework.stereotype.Component;
 
 
 @Mapper
@@ -19,7 +16,7 @@ public interface UserMapper {
     @Options(useGeneratedKeys = true, keyProperty = "user.id")
     public void createUser(User user);
 
-    @Select("select loginName,nickName from user where id=#{id}")
+    @Select("select * from user where id=#{id}")
     public User retrieveUser(@Param("id") Integer id);
 
     @Select("select * from user where loginName=#{loginName}")

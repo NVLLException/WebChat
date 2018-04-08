@@ -10,20 +10,40 @@
         <label for="password">密码</label>
         <input type="password" class="" id="password" placeholder="输入密码">
       </div>
+      <div class="am-form-group">
+        <button type="button" id="login" class="am-btn am-btn-secondary">登录</button>
+      </div>
     </fieldset>
   </div>
 </div>
 <jsp:include page="../common/common.jsp"></jsp:include>
 <script type="text/javascript">
-  $('#loginName').change(function(){
-    $.ajax({
-      url: '',
-      data: {loginName: this.value},
-      dataType: 'json',
-      type: 'post'
-    }).done(function(result){
-      if(result.statusCode == "error"){
-      }
+  $(document).ready(function(){
+    $('#loginName').change(function(){
+      $.ajax({
+        url: '/validateLoginName',
+        data: {loginName: this.value},
+        dataType: 'json',
+        type: 'post'
+      }).done(function(result){
+        if(result.statusCode == "error"){
+
+        }
+      });
+    });
+    $('#login').off().on('click', function(){
+      var $loginName = $('#loginName').val();
+      var $password = $('#password').val();
+      $.ajax({
+        url: '/validateLoginInfo',
+        data: {loginName: $loginName, password: $password},
+        dataType: 'json',
+        type: 'post'
+      }).done(function(result){
+        if(result.statusCode == "error"){
+
+        }
+      });
     });
   });
 </script>
