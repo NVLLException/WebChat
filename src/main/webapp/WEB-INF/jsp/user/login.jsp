@@ -1,14 +1,4 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<style>
-  .middleDiv{
-    max-width: 25%;
-    min-width:25%;
-    max-height: 60%;
-    margin: auto;
-    margin-top: 10%;
-    box-shadow:0 0 2px 2px grey;
-  }
-</style>
 <div style="height: 100%">
   <div class="middleDiv">
     <fieldset>
@@ -22,6 +12,7 @@
       </div>
       <div class="am-form-group">
         <button type="button" id="login" class="am-btn am-btn-secondary">登录</button>
+        <a class="am-btn am-btn-link" id="register">注册</a>
       </div>
     </fieldset>
   </div>
@@ -50,10 +41,16 @@
         dataType: 'json',
         type: 'post'
       }).done(function(result){
+        console.log(result);
         if(result.statusCode == "error"){
 
+        } else {
+          window.location.href = "/webChat/chat";
         }
       });
+    });
+    $('#register').off().on('click',function(){
+      window.location.href = "/webChat/register";
     });
   });
 </script>

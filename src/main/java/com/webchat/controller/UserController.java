@@ -7,6 +7,7 @@ import com.webchat.common.WcConstant;
 import com.webchat.common.WcResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -53,8 +54,28 @@ public class UserController {
     }
 
     @RequestMapping("/doLogin")
-    public void doLogin(HttpServletRequest request, HttpServletResponse response){
-        ModelAndView modelAndView = new ModelAndView("/user/login");
+    public ModelAndView doLogin(HttpServletRequest request, HttpServletResponse response){
+        ModelAndView modelAndView = new ModelAndView("/chat/chat");
+        return modelAndView;
+    }
 
+    @RequestMapping("/register")
+    public ModelAndView register(HttpServletRequest request, HttpServletResponse response){
+        ModelAndView modelAndView = new ModelAndView("/user/register");
+        return modelAndView;
+    }
+    @RequestMapping("/doRegister")
+    public void diRegister(HttpServletRequest request, HttpServletResponse response){
+        String loginName = request.getParameter("loginName");
+        String password = request.getParameter("password");
+        String nikeName = request.getParameter("nickName");
+        User user = new User();
+        user.setLoginName(loginName);
+        user.setPassword(password);
+        user.setNickName(StringUtils.isEmpty(nikeName) ? loginName : nikeName);
+        User resultUser = userService.createUser(user);
+        WcResponse wcResponse = new WcResponse();
+        wcResponse.succ();
+        HttpUtil.ajaxSendResponse(response, wcResponse);
     }
 }

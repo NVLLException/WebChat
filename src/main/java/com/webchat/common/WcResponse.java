@@ -1,8 +1,13 @@
 package com.webchat.common;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.ArrayList;
 import java.util.List;
 
+@Getter
+@Setter
 public class WcResponse {
     private List<String> errors;
     private String statusCode = "success";

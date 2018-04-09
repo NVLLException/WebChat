@@ -1,0 +1,18 @@
+.middleDiv{
+    max-width: 25%;
+    min-width:25%;
+    margin: auto;
+    margin-top: 10%;
+    box-shadow:0 0 2px 2px grey;
+}
+.label-block{
+    display: block;
+}
+.chatDiv{
+    max-width: 45%;
+    min-width:45%;
+    min-height: 70%;
+    margin: auto;
+    margin-top: 10%;
+    box-shadow:0 0 2px 2px grey;
+}

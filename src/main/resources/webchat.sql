@@ -10,7 +10,7 @@ create table `user`(
 	`password` varchar(255) not null,
 	`createTime` datetime not null,
 	`lastModifyTime` datetime not null,
-	`headImg` varchar(100) not null,
+	`headImg` varchar(100) default null,
 	primary key(`id`)
 )ENGINE=INNODB,CHARSET=utf8;
 ##########Webchat###end############
