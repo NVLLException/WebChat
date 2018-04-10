@@ -1,7 +1,12 @@
 package com.webchat.message;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class Message {
-    private String ownUUID;
-    private String toUUID;
+    private String from;
+    private String to;
     private String content;
 }

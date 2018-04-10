@@ -3,6 +3,8 @@ package com.webchat.socket;
 
 import java.io.IOException;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.websocket.Session;
 
 public class HandleMessage {
@@ -19,7 +21,7 @@ public class HandleMessage {
     }
 
     public void onMessage(String message, Session session){
-
+        System.out.println(message);
     }
     public void sendMessage(String message, Session session) throws IOException{
         session.getBasicRemote().sendText(message);
