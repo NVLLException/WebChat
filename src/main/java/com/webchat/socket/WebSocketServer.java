@@ -1,15 +1,17 @@
 package com.webchat.socket;
 
 import com.webchat.common.SocketUtil;
+import com.webchat.common.WcConstant;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.websocket.*;
 import javax.websocket.server.ServerEndpoint;
 import java.io.IOException;
 
-@ServerEndpoint(value = "/websocket")
+@ServerEndpoint(value = "/websocket", configurator=GetHttpSessionConfigurator.class)
 @Component
 public class WebSocketServer {
     private Session session;
@@ -23,7 +25,9 @@ public class WebSocketServer {
     }
 
     @OnOpen
-    public void onOpen(Session session){
+    public void onOpen(Session session, EndpointConfig config){
+        HttpSession httpSession = (HttpSession)config.getUserProperties().get(HttpSession.class.getName());
+        httpSession.getAttribute(WcConstant.USER);
         this.setSession(session);
         SocketUtil.setSocket(this);
         System.out.println("new session adding!");
