@@ -11,7 +11,7 @@ import java.util.Map;
 public class SessionMapScheduler {
     @Scheduled(cron="0 0/1 * * * ?")// every 1 mins
     public void clearTheClosedSession(){
-        Map<String,WebSocketServer> socketMap = SocketUtil.getSessionMap();
+        Map<Object,WebSocketServer> socketMap = SocketUtil.getSessionMap();
         for(Object key : socketMap.keySet()){
             if(socketMap.get(key) != null && !socketMap.get(key).getSession().isOpen()){
                 socketMap.remove(key);

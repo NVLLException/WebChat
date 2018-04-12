@@ -2,6 +2,7 @@ package com.webchat.socket;
 
 import com.webchat.common.SocketUtil;
 import com.webchat.common.WcConstant;
+import com.webchat.entity.User;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
@@ -27,20 +28,17 @@ public class WebSocketServer {
     @OnOpen
     public void onOpen(Session session, EndpointConfig config){
         HttpSession httpSession = (HttpSession)config.getUserProperties().get(HttpSession.class.getName());
-        httpSession.getAttribute(WcConstant.USER);
+        User user = (User)httpSession.getAttribute(WcConstant.USER);
         this.setSession(session);
-        SocketUtil.setSocket(this);
-        System.out.println("new session adding!");
-        try{
-            sendMessage("hello");
-        } catch (Exception e){
 
-        }
+        SocketUtil.setSocket(user.getId().toString(), this);
+        System.out.println("new session adding!");
     }
 
     @OnError
     public void onError(Session session, Throwable error) {
         System.err.println("error exception");
+        SocketUtil.removeSocket(this);
         error.printStackTrace();
     }
 
@@ -53,9 +51,5 @@ public class WebSocketServer {
     @OnMessage
     public void onMessage(String message, Session session){
         HandleMessage.getMessageInstance().onMessage(message, session);
-    }
-
-    public void sendMessage(String message) throws IOException{
-        HandleMessage.getMessageInstance().sendMessage(message, getSession());
     }
 }

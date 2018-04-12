@@ -7,11 +7,11 @@ import java.util.*;
 import com.webchat.socket.WebSocketServer;
 
 public class SocketUtil {
-    private volatile static Map<String,WebSocketServer> sessionMap;
+    private volatile static Map<Object,WebSocketServer> sessionMap;
     static{
         sessionMap = new HashMap();
     }
-    public static Map<String,WebSocketServer> getSessionMap(){
+    public static Map<Object,WebSocketServer> getSessionMap(){
         if(sessionMap == null){
             synchronized (sessionMap){
                 if(sessionMap == null)
@@ -21,25 +21,24 @@ public class SocketUtil {
         return sessionMap;
     }
 
-    public static String setSocket(WebSocketServer socket){
+    public static Object setSocket(Object uuid, WebSocketServer socket){
         if(socket == null)
             return null;
         if(sessionMap.containsValue(socket)){
-            Set<String> keys = sessionMap.keySet();
-            for(String key : keys){
+            Set<Object> keys = sessionMap.keySet();
+            for(Object key : keys){
              if(socket.equals(sessionMap.get(key))){
                  return key;
              }
             }
         } else {
-            String uuid = UUID.randomUUID().toString();
             sessionMap.put(uuid, socket);
             return uuid;
         }
         return null;
     }
 
-    public static Session getSocket(String uuid){
+    public static Session getSession(String uuid){
         if(uuid == null)
             return null;
         WebSocketServer socket = sessionMap.get(uuid);
@@ -57,7 +56,7 @@ public class SocketUtil {
     public static void removeSocket(WebSocketServer socket){
         if(socket == null || !sessionMap.containsValue(socket)) return;
         else{
-            for(String key : sessionMap.keySet()){
+            for(Object key : sessionMap.keySet()){
                 if(socket.equals(sessionMap.get(key))){
                     sessionMap.remove(key);
                     break;

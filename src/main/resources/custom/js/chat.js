@@ -38,10 +38,20 @@ var Chat = (function(){
             $this.open();
             $this.error();
             $this.close();
+            $this.onmessage();
         } else {
             alert("your browser not support WebSockt!");
         }
     }
+
+    Chat.prototype.onmessage = function() {
+        $defaults.socket.onmessage = function(msg) {
+            if($defaults.onMessageCallBack){
+                $defaults.onMessageCallBack($defaults.socket, msg.data);
+            }
+        };
+    };
+
     Chat.prototype.open = function(){
         $defaults.socket.onopen = function() {
             console.log("Socket is open");

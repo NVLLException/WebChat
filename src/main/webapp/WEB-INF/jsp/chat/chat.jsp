@@ -1,6 +1,11 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ page import="com.webchat.common.WcConstant" %>
+<%@ page import="com.webchat.entity.User" %>
 <jsp:include page="../common/common.jsp"></jsp:include>
 <script src="/js/chat.js" type="text/javascript"></script>
+<%
+    Integer userId = ((User)request.getSession().getAttribute(WcConstant.USER)).getId();
+%>
 <div data-am-widget="tabs" class="am-tabs am-tabs-default chatDiv">
     <div class="am-tabs-bd" style="height: 70%">
         <div friends class="am-tab-panel am-active">
@@ -41,19 +46,30 @@
     </ul>
 </div>
 <script type="text/javascript">
+    var fromId = '<%=userId%>';
+    var toId = "";
     $(document).ready(function(){
         var socket = null;
         var $options = {
             url : 'ws://localhost:9090/websocket',
-            openCallBack : openCallBack
+            openCallBack : openCallBack,
+            onMessageCallBack : onMessageCallBack
         }
         var chat = new Chat($options);
         function openCallBack($socket){
             socket = $socket;
         }
+        function onMessageCallBack($socket, message){
+            console.log(message);
+        }
         $('#send').off().on('click',function(){
-            var message = $('[name="message"]').val();
-            socket.send(message);
+            var content = $('[name="message"]').val();
+            var $message = {
+                from : fromId,
+                to : toId,
+                content : content
+            }
+            socket.send(JSON.stringify($message));
         });
     });
 </script>
